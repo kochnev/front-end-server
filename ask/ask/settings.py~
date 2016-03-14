@@ -63,16 +63,6 @@ WSGI_APPLICATION = 'ask.wsgi.application'
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 #}
-DATABASES = {
-     'default': {
-        'ENGINE' : 'django.db.backends.mysql',
-        'NAME':'ask',
-        'USER': 'admin',
-        'PASSWORD' : 'admin',
-        'HOST' : 'localhost',
-        'PORTN' : '',
-      }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
