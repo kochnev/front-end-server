@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'qa',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,7 +54,9 @@ ROOT_URLCONF = 'ask.urls'
 
 WSGI_APPLICATION = 'ask.wsgi.application'
 
-
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(BASE_DIR), 'templates'),
+)
 # Database
 # https://docs.djan#goproject.com/en/1.6/ref/settings/#databases
 
