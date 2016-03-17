@@ -6,6 +6,7 @@ git --global user.name "pposad"
 sudo apt-get install tree
 sudo apt-get install htop
 sudo apt-get install python-django-south
+sudo pip install django-autofixture
 
 #Change config
 sudo rm /etc/nginx/sites-enabled/default
