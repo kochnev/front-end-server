@@ -5,6 +5,6 @@ from django.http import HttpResponse
 
 @require_GET
 def test(request, *args, **kwargs):   
-    article = get_object_or_404(Article, id = 1)
-    return render(request, "qa/index.html",{'article': article})    
-#return HttpResponse('OK')
+   article = get_object_or_404(Article, id = 1)
+   return render(request, "qa/index.html",{'article': article})    
+  # return HttpResponse('OK')
