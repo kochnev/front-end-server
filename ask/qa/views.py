@@ -10,15 +10,16 @@ def test(request, *args, **kwargs):
     return render(request, "qa/index.html",{'article': article})    
 #return HttpResponse('OK')
 
-@require_GET
-def question_detail(request,*args):
-    id = args[0]
-    quest = get_object_or_404(Question, id = id)
-    answers = Answer.objects.all().filter(question_id = id)[:]
-    return render(request, 'qa/question_detail.html', {
-        'quest': quest,
-        'answers': answers
-    })
+
+def question_detail(request):
+  #  id = args[0]
+    return HttpResponse('OK2')
+  #  quest = get_object_or_404(Question, id = id)
+  #  answers = Answer.objects.all().filter(question_id = id)[:]
+  #  return render(request, 'qa/question_detail.html', {
+  #      'quest': quest,
+  #      'answers': answers
+  #  })
 @require_GET
 def main(request, page = None):
     try:
