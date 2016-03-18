@@ -1,6 +1,6 @@
 #Git settings
-git --global user.email "lyotchik1@mail.ru"
-git --global user.name "pposad"
+git config --global user.email "lyotchik1@mail.ru"
+git config --global user.name "pposad"
 
 #Install packages
 sudo apt-get install tree
@@ -21,4 +21,4 @@ sudo /etc/init.d/gunicorn restart
 sudo /etc/init.d/mysql restart
 
 sudo mysql -uroot < ~/web/init_db
-sudo python ~web/ask/manage.py syncdb
+sudo python ~/web/ask/manage.py syncdb
