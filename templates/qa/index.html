@@ -1,4 +1,18 @@
+{% block A%}
+  {%for q in all_quests %}
+    <div>{{q.id}}.{{q}}</div>
+    <div><a href="/question/{{q.id}}/">link</a></div>
+  {%endfor%}
+  <p>{{page.number}}</p>
+  <nav>
+  <ul>
+    {%for pnumber in paginator.page_range %}
+        
+   <li><a href = "{{paginator.baseurl}}{{pnumber}}">
+         {{pnumber}}
+        </a></li>
+    {%endfor%}
+  </ul>   
+  </nav>
+{% endblock %}
 
-D
-{% block A%}{{ article.author }} E{% endblock %}
-F

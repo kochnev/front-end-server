@@ -10,7 +10,9 @@ class Question(models.Model):
     rating = models.IntegerField()
     author = models.ForeignKey(User,related_name = 'question_author', null=True, on_delete=models.SET_NULL)
     likes = models.ManyToManyField(User, related_name = 'question_like')
-    
+    def __unicode__(self):
+        return self.title
+
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
