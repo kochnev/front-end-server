@@ -1,5 +1,4 @@
 drop database if exists ask;
-drop user 'admin'@'localhost';
 
 create database ask;
 create user 'admin'@'localhost' identified by 'admin';

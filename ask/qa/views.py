@@ -16,3 +16,4 @@ def question_list_all(request, page):
     return render(requestn, 'qa/index.html', {
        'q_list':q_list[0:10]
     }) 
+
