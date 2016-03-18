@@ -7,7 +7,7 @@ class Question(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
-    rating = models.IntegerField()
+    rating = models.IntegerField(default=1, blank = True, null = True)
     author = models.ForeignKey(User,related_name = 'question_author', null=True, on_delete=models.SET_NULL)
     likes = models.ManyToManyField(User, related_name = 'question_like')
     def __unicode__(self):
