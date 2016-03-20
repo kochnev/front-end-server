@@ -1,0 +1,35 @@
+from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_GET
+from qa.models import Article, Question
+from django.http import HttpResponse
+from django.core.paginator import Paginator
+
+@require_GET
+def test(request, *args, **kwargs):   
+    article = get_object_or_404(Article, id = 1)
+    return render(request, "qa/index.html",{'article': article})    
+#return HttpResponse('OK')
+
+@require_GET
+def main(request, page = None):
+    try:
+        limit = int(request.GET.get('limit', 10))
+    except:
+        limit = 10
+    try:
+        page = int(request.GET.get('page', 1))
+    except:
+        page = 1
+    paginator = Paginator(Question.objects.all().order_by('-id'), limit)
+    paginator.baseurl = '/?page='
+    quests = paginator.page(page)
+    
+    return render(request, "qa/index.html", {
+        'all_quests': quests.object_list,
+        'paginator': paginator,
+        'page': quests,
+    }) 
+ #   return HttpResponse('OKsdfsdfq')
+@require_GET
+def popular(request, page = None):
+    
