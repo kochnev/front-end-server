@@ -1,0 +1,10 @@
+<div>{{quest.title}}</div>
+{% for answ in answers %}
+     
+<div>{{answ.text}}</div>
+{% endfor%}
+<form action='/answer/' method='post'>
+{% csrf_token %}
+{{answer_form}}
+<input type="submit"> 
+</form>
