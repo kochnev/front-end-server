@@ -12,6 +12,7 @@ def test(request, *args, **kwargs):
     return render(request, "qa/index.html",{'article': article})    
 #return HttpResponse('OK')
 
+
 def quest_add(request):
     if request.method == "POST":
         form = AskForm(request.POST)
