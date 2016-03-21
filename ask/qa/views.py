@@ -3,19 +3,53 @@ from django.views.decorators.http import require_GET,require_POST
 from qa.models import Article, Question,Answer
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
-from qa.forms import AskForm,AnswerForm
+from qa.forms import AskForm,AnswerForm, SignUpForm, LoginForm
 from django.core.urlresolvers import reverse
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
+def register(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/")
+    else:
+        form = SignUpForm()
+    return render(request, "qa/register.html", {
+        'form' : form,
+    })
 @require_GET
 def test(request, *args, **kwargs):   
     article = get_object_or_404(Article, id = 1)
     return render(request, "qa/index.html",{'article': article})    
 #return HttpResponse('OK')
 
-
+def mylogin(request):
+    message = ''
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                message = 'username or password are incorrect'
+    else:
+        form = LoginForm()
+    return render(request, 'qa/login.html',{
+        'form': form,
+        'message':message,
+    })
+            
+                   
 def quest_add(request):
     if request.method == "POST":
         form = AskForm(request.POST)
+        form._user = request.user
         if form.is_valid():
             quest = form.save()
             return HttpResponseRedirect('/question/' + str(quest.id)+'/')
@@ -38,6 +72,7 @@ def question_detail(request,id):
 @require_POST
 def answer_add(request):
     answer_form = AnswerForm(request.POST)
+    answer_form._user = request.user
     if answer_form.is_valid():
         answer = answer_form.save()        
     quest_id = request.POST['question']    
