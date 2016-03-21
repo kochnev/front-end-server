@@ -12,7 +12,7 @@ class SignUpForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    def login(self):
+    def save(self):
         user = User.objects.create_user(**self.cleaned_data)
         user.save()    
 
